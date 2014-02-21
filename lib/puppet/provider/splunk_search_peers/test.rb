@@ -24,4 +24,4 @@ end
 def authorize(request)
   request.basic_auth 'admin', 'changeme'
 end
-puts GET('/services/search/distributed/peers')
+puts GET('/services/search/distributed/peers?output_mode=json')
