@@ -7,14 +7,17 @@ Puppet::Type.newtype(:splunk_search_peers) do
     }
   }
   ensurable
-  newproperty(:user) do
+  newparam(:name) do
+    desc "Name of the search peers to add"
+  end
+  newparam(:user) do
     desc "Admin User to use when connecting to the API"
     validate do |value|
       unless value =~ /^\w+/
         raise ArgumentError, "%s is not a valid user name" % value
     end
   end
-  newproperty(:password) do
+  newparam(:password) do
     desc "Password to use when connecting to the API"
   end
 end
