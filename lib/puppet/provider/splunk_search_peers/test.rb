@@ -29,4 +29,4 @@ end
 foo = GET('/services/search/distributed/peers?output_mode=json')
 
 foo = JSON.load(foo.body)
-puts JSON.pretty_generate(foo)
+puts JSON.pretty_generate(foo['entry'])
