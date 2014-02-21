@@ -1,5 +1,7 @@
 #!/usr/bin/ruby
+require 'rubygems'
 require 'base64'
+require 'json'
 require 'net/http'
 require 'net/https'
 require 'openssl'
@@ -24,4 +26,7 @@ end
 def authorize(request)
   request.basic_auth 'admin', 'changeme'
 end
-puts GET('/services/search/distributed/peers?output_mode=json')
+foo = GET('/services/search/distributed/peers?output_mode=json')
+
+foo = JSON.load(foo.body)
+puts JSON.pretty_generate(foo)
