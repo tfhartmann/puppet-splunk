@@ -9,6 +9,8 @@ require 'openssl'
 
 #curl --get -d "output_mode=json" -k -u admin https://localhost:8089/services/search/distributed/peers
 
+peers = []
+
 def GET(path)
   request = Net::HTTP::Get.new(path)
   authorize(request)
@@ -29,4 +31,13 @@ end
 foo = GET('/services/search/distributed/peers?output_mode=json')
 
 foo = JSON.load(foo.body)
-puts JSON.pretty_generate(foo['entry'])
+bar = foo['entry']
+
+for i in bar
+  peer = i['name'].split(":")
+  peers << peer[0]
+end 
+
+puts peers.sort
+
+#puts JSON.pretty_generate(foo['entry'])
